@@ -1,18 +1,408 @@
+
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nour Academy | Dashboard</title>
   <link href="/src/style.css" rel="stylesheet">
 </head>
-<body>
-  <header></header>
 
-  <div>
-    <nav></nav>
+<body class="min-h-screen bg-bg text-text">
 
-    <section></section>
-    <section></section>
+  <!-- Header -->
+  <header class="flex h-20 items-center justify-between border-b border-border bg-surface px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-2">
+      <a href="index.html">
+        <img
+          src="src/assets/logo.webp"
+          alt="Nour Academy logo"
+          class="h-12 w-auto"
+        >
+      </a>
+
+      <p class="-ml-2 text-xl font-bold leading-tight text-primary">
+        Nour<br>academy
+      </p>
+    </div>
+
+    <button
+      id="menuToggle"
+      type="button"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+      class="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-2xl text-primary transition hover:bg-surface-soft lg:hidden">☰</button>
+
+  </header>
+
+
+  <!-- Layout -->
+  <div class="flex min-h-screen">
+
+    <aside
+      id="sidebar"
+      class="fixed inset-y-20 left-0 z-50 flex w-[280px] -translate-x-full flex-col gap-4 overflow-y-auto bg-primary px-5 py-6 transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:translate-x-0"
+    >
+
+      <a
+        id=""
+        class="flex items-center gap-3 rounded-xl bg-white/10 px-4 py-3 font-medium text-white transition hover:bg-white/20"
+      >
+        <span>▦</span>
+        Tableau de bord
+      </a>
+
+      <a
+        href="#inscriptions"
+        class="flex items-center gap-3 rounded-xl px-4 py-3 font-medium text-white transition hover:bg-white/10"
+      >
+        <span>☷</span>
+        Inscriptions
+      </a>
+
+    </aside>
+
+
+    <!-- Main content -->
+    <main id="dashboard" class="min-w-0 flex-1 bg-bg p-4 sm:p-6 lg:p-8">
+
+      <!-- Page heading -->
+      <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+        <div>
+          <h1 class="text-2xl font-bold text-primary sm:text-3xl">
+            Tableau de bord
+          </h1>
+
+          <p class="mt-1 text-sm text-text-secondary sm:text-base">
+            Vue d'ensemble des inscriptions et des paiements
+          </p>
+        </div>
+
+        <button class="flex items-center gap-2 self-start rounded-xl border border-border bg-surface px-4 py-3 text-sm font-medium shadow-sm sm:self-auto">
+          <span>📅</span>
+          Octobre 2026
+          <span class="text-text-secondary">⌄</span>
+        </button>
+
+      </div>
+
+
+      <!-- Statistics cards -->
+      <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+        <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-sm font-medium text-text-secondary">Inscriptions</p>
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-soft text-lg">👥</span>
+          </div>
+
+          <h2 class="mt-4 text-3xl font-bold text-primary">128</h2>
+
+          <p class="mt-2 text-xs text-success">
+            +12% par rapport au mois dernier
+          </p>
+        </article>
+
+
+        <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-sm font-medium text-text-secondary">En attente</p>
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-50 text-lg">⏳</span>
+          </div>
+
+          <h2 class="mt-4 text-3xl font-bold text-primary">32</h2>
+
+          <p class="mt-2 text-xs text-text-secondary">
+            Inscriptions à traiter
+          </p>
+        </article>
+
+
+        <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-sm font-medium text-text-secondary">Validées</p>
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 text-lg">✓</span>
+          </div>
+
+          <h2 class="mt-4 text-3xl font-bold text-primary">78</h2>
+
+          <p class="mt-2 text-xs text-success">
+            Dossiers validés
+          </p>
+        </article>
+
+
+        <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-sm font-medium text-text-secondary">Recettes encaissées</p>
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-lg">💰</span>
+          </div>
+
+          <h2 class="mt-4 text-2xl font-bold text-primary sm:text-3xl">12 600 MAD</h2>
+
+          <p class="mt-2 text-xs text-text-secondary">
+            Total encaissé ce mois
+          </p>
+        </article>
+
+      </section>
+
+
+      <!-- Status and centers -->
+      <section class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
+
+        <!-- Status distribution -->
+        <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+
+          <div class="mb-6">
+            <h2 class="font-bold text-primary">Répartition par statut</h2>
+            <p class="mt-1 text-sm text-text-secondary">État des dossiers d'inscription</p>
+          </div>
+
+          <div class="space-y-6">
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+                <span>Validée</span>
+                <span class="font-semibold">78</span>
+              </div>
+
+              <div class="h-3 overflow-hidden rounded-full bg-gray-100">
+                <div class="h-full w-[75%] rounded-full bg-green-500"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+                <span>En attente</span>
+                <span class="font-semibold">32</span>
+              </div>
+
+              <div class="h-3 overflow-hidden rounded-full bg-gray-100">
+                <div class="h-full w-[40%] rounded-full bg-yellow-400"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+                <span>Payée</span>
+                <span class="font-semibold">18</span>
+              </div>
+
+              <div class="h-3 overflow-hidden rounded-full bg-gray-100">
+                <div class="h-full w-[25%] rounded-full bg-blue-400"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- Registrations by center -->
+        <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+
+          <div class="mb-6">
+            <h2 class="font-bold text-primary">Inscriptions par centre</h2>
+            <p class="mt-1 text-sm text-text-secondary">Répartition des élèves</p>
+          </div>
+
+          <div class="space-y-6">
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+                <span>Nador</span>
+                <span class="font-semibold">56</span>
+              </div>
+
+              <div class="h-3 overflow-hidden rounded-full bg-gray-100">
+                <div class="h-full w-full rounded-full bg-teal-700"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+                <span>Hay Al Matar</span>
+                <span class="font-semibold">42</span>
+              </div>
+
+              <div class="h-3 overflow-hidden rounded-full bg-gray-100">
+                <div class="h-full w-[75%] rounded-full bg-teal-500"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+                <span>Selouane</span>
+                <span class="font-semibold">30</span>
+              </div>
+
+              <div class="h-3 overflow-hidden rounded-full bg-gray-100">
+                <div class="h-full w-[55%] rounded-full bg-teal-300"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <!-- Course capacity -->
+      <section class="mt-6 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+
+        <div class="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+
+          <div>
+            <h2 class="font-bold text-primary">Taux de remplissage par cours</h2>
+            <p class="mt-1 text-sm text-text-secondary">
+              Suivi des places disponibles
+            </p>
+          </div>
+
+          <button class="self-start rounded-lg border border-border px-4 py-2 text-sm transition hover:bg-surface-soft sm:self-auto">
+            Voir les cours
+          </button>
+
+        </div>
+
+        <div class="overflow-x-auto">
+
+          <table class="w-full min-w-[600px] text-left text-sm">
+
+            <thead class="bg-surface-soft text-text-secondary">
+              <tr>
+                <th class="px-6 py-4 font-medium">Cours</th>
+                <th class="px-6 py-4 font-medium">Inscrits</th>
+                <th class="px-6 py-4 font-medium">Capacité</th>
+                <th class="px-6 py-4 font-medium">Remplissage</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">Mathématiques — 2e Bac</td>
+                <td class="px-6 py-4">14</td>
+                <td class="px-6 py-4">15</td>
+                <td class="px-6 py-4 font-bold text-red-500">93%</td>
+              </tr>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">Physique-Chimie — 2e Bac</td>
+                <td class="px-6 py-4">12</td>
+                <td class="px-6 py-4">15</td>
+                <td class="px-6 py-4 font-bold text-yellow-500">80%</td>
+              </tr>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">Anglais — Initiation</td>
+                <td class="px-6 py-4">15</td>
+                <td class="px-6 py-4">15</td>
+                <td class="px-6 py-4 font-bold text-red-500">100%</td>
+              </tr>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">Français — Collège</td>
+                <td class="px-6 py-4">10</td>
+                <td class="px-6 py-4">15</td>
+                <td class="px-6 py-4 font-bold text-teal-600">67%</td>
+              </tr>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">Informatique — Initiation</td>
+                <td class="px-6 py-4">8</td>
+                <td class="px-6 py-4">15</td>
+                <td class="px-6 py-4 font-bold text-teal-600">53%</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- Latest registrations -->
+      <section id="inscriptions" class="mt-6 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+
+        <div class="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+
+          <div>
+            <h2 class="font-bold text-primary">Dernières inscriptions</h2>
+            <p class="mt-1 text-sm text-text-secondary">
+              Les derniers dossiers reçus
+            </p>
+          </div>
+
+          <button class="self-start rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-hover sm:self-auto">
+            Voir toutes les inscriptions
+          </button>
+
+        </div>
+
+        <div class="overflow-x-auto">
+
+          <table class="w-full min-w-[650px] text-left text-sm">
+
+            <thead class="bg-surface-soft text-text-secondary">
+              <tr>
+                <th class="px-6 py-4 font-medium">Référence</th>
+                <th class="px-6 py-4 font-medium">Élève</th>
+                <th class="px-6 py-4 font-medium">Cours</th>
+                <th class="px-6 py-4 font-medium">Statut</th>
+                <th class="px-6 py-4 font-medium">Date</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">NA-2026-021</td>
+                <td class="px-6 py-4">Youssef Khan</td>
+                <td class="px-6 py-4">Physique-Chimie</td>
+                <td class="px-6 py-4">
+                  <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600">Payée</span>
+                </td>
+                <td class="px-6 py-4">28/10/2026</td>
+              </tr>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">NA-2026-022</td>
+                <td class="px-6 py-4">Lina Mouad</td>
+                <td class="px-6 py-4">Français</td>
+                <td class="px-6 py-4">
+                  <span class="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-600">Validée</span>
+                </td>
+                <td class="px-6 py-4">28/10/2026</td>
+              </tr>
+
+              <tr class="border-t border-border">
+                <td class="px-6 py-4 font-medium">NA-2026-023</td>
+                <td class="px-6 py-4">Karim Saidi</td>
+                <td class="px-6 py-4">Informatique</td>
+                <td class="px-6 py-4">
+                  <span class="rounded-full bg-yellow-50 px-3 py-1 text-xs font-medium text-yellow-700">En attente</span>
+                </td>
+                <td class="px-6 py-4">27/10/2026</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </main>
+
   </div>
+
 </body>
 </html>
