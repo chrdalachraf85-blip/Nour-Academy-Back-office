@@ -85,5 +85,21 @@ for (const student of studentslist) {
   }
 }
 
-document.querySelector("#payed-price").textContent =`${monthlyRevenue} +  MAD`
+document.querySelector("#payed-price").textContent =`${monthlyRevenue}  MAD`
 
+
+// status bars update
+function updateBar(id, count) {
+  const bar = document.querySelector("#" + id);
+
+    if (totalRegistrations > 0) {
+      percentage = (count / totalRegistrations) * 100;
+    }
+
+    bar.style.width = percentage + "%";
+  
+}
+
+updateBar("validés-bar", validatedCount);
+updateBar("enAttent-bar", pendingCount);
+updateBar("Payée-bar", paidCount);
