@@ -46,17 +46,44 @@ localStorage.setItem(
   JSON.stringify(studentslist)
 );
 
-//
+// dashboard stats
+const totalRegistrations = studentslist.length;
 
+const pendingount = studentslist.filter(
+  student =>
+    student.statut === "En attente" ||
+    student.statut === "Nouvelle"
+).length;
+
+const validatedCount = studentslist.filter(
+  student => student.statut === "Validée"
+).length;
+
+const paidCount = studentslist.filter(
+  student => student.statut === "Payée"
+).length;
+
+//  html changing 
+document.querySelector("#registrations-number").textContent =
+  totalRegistrations;
+
+document.querySelector("#en-atttent").textContent = pendingCount;
+document.querySelector("#validés").textContent = validatedCount;
+
+document.querySelector("#Validées-number").textContent = validatedCount;
+document.querySelector("#enAttent-number").textContent = pendingCount;
+document.querySelector("#Payée-number").textContent = paidCount;
+
+//
 
 let monthlyRevenue = 0;
 
 for (const student of studentslist) {
-  if (student.statut === "Payée"){
+  if (
+    student.statut === "Payée") {
     monthlyRevenue += Number(student.total) || 0;
   }
 }
 
-document.querySelector("#payed-price").textContent =
-  monthlyRevenue.toLocaleString("fr-FR") + " MAD";
+document.querySelector("#payed-price").textContent =`${monthlyRevenue} +  MAD`
 
