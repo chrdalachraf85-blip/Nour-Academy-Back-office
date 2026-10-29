@@ -80,12 +80,6 @@
           </p>
         </div>
 
-        <button class="flex items-center gap-2 self-start rounded-xl border border-border bg-surface px-4 py-3 text-sm font-medium shadow-sm sm:self-auto">
-          <span>📅</span>
-          Octobre 2026
-          <span class="text-text-secondary">⌄</span>
-        </button>
-
       </div>
 
 
@@ -98,21 +92,21 @@
             <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-soft text-lg">👥</span>
           </div>
 
-          <h2 class="mt-4 text-3xl font-bold text-primary">128</h2>
+          <h2 class="mt-4 text-3xl font-bold text-primary" id="registrations-number">128</h2>
 
-          <p class="mt-2 text-xs text-success">
-            +12% par rapport au mois dernier
+          <p class="mt-2 text-xs text-success " id="par-rapport">
+            
           </p>
         </article>
 
 
         <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
           <div class="flex items-center justify-between gap-3">
-            <p class="text-sm font-medium text-text-secondary">En attente</p>
+            <p class="text-sm font-medium text-text-secondary" >En attente</p>
             <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-50 text-lg">⏳</span>
           </div>
 
-          <h2 class="mt-4 text-3xl font-bold text-primary">32</h2>
+          <h2 class="mt-4 text-3xl font-bold text-primary" id="en-atttent">32</h2>
 
           <p class="mt-2 text-xs text-text-secondary">
             Inscriptions à traiter
@@ -126,7 +120,7 @@
             <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 text-lg">✓</span>
           </div>
 
-          <h2 class="mt-4 text-3xl font-bold text-primary">78</h2>
+          <h2 class="mt-4 text-3xl font-bold text-primary" id="validés">78</h2>
 
           <p class="mt-2 text-xs text-success">
             Dossiers validés
@@ -136,11 +130,11 @@
 
         <article class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
           <div class="flex items-center justify-between gap-3">
-            <p class="text-sm font-medium text-text-secondary">Recettes encaissées</p>
+            <p class="text-sm font-medium text-text-secondary" >Recettes encaissées</p>
             <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-lg">💰</span>
           </div>
 
-          <h2 class="mt-4 text-2xl font-bold text-primary sm:text-3xl">12 600 MAD</h2>
+          <h2 class="mt-4 text-2xl font-bold text-primary sm:text-3xl" id="payed-price">12 600 MAD</h2>
 
           <p class="mt-2 text-xs text-text-secondary">
             Total encaissé ce mois
@@ -166,33 +160,33 @@
             <div>
               <div class="mb-2 flex items-center justify-between gap-3 text-sm">
                 <span>Validée</span>
-                <span class="font-semibold">78</span>
+                <span class="font-semibold" id="Validées-number">78</span>
               </div>
 
               <div class="h-3 overflow-hidden rounded-full bg-gray-100">
-                <div class="h-full w-[75%] rounded-full bg-green-500"></div>
+                <div class="h-full w-[75%] rounded-full bg-green-500" id="validés-bar"></div>
               </div>
             </div>
 
             <div>
               <div class="mb-2 flex items-center justify-between gap-3 text-sm">
                 <span>En attente</span>
-                <span class="font-semibold">32</span>
+                <span class="font-semibold" id="enAttent-number">32</span>
               </div>
 
               <div class="h-3 overflow-hidden rounded-full bg-gray-100">
-                <div class="h-full w-[40%] rounded-full bg-yellow-400"></div>
+                <div class="h-full w-[40%] rounded-full bg-yellow-400" id="enAttent-bar"></div>
               </div>
             </div>
 
             <div>
               <div class="mb-2 flex items-center justify-between gap-3 text-sm">
                 <span>Payée</span>
-                <span class="font-semibold">18</span>
+                <span class="font-semibold" id="Payée-number">18</span>
               </div>
 
               <div class="h-3 overflow-hidden rounded-full bg-gray-100">
-                <div class="h-full w-[25%] rounded-full bg-blue-400"></div>
+                <div class="h-full w-[25%] rounded-full bg-blue-400" id="Payée-bar"></div>
               </div>
             </div>
 
@@ -214,33 +208,33 @@
             <div>
               <div class="mb-2 flex items-center justify-between gap-3 text-sm">
                 <span>Nador</span>
-                <span class="font-semibold">56</span>
+                <span class="font-semibold" id="Nador-number">56</span>
               </div>
 
               <div class="h-3 overflow-hidden rounded-full bg-gray-100">
-                <div class="h-full w-full rounded-full bg-teal-700"></div>
+                <div class="h-full w-full rounded-full bg-teal-700" id="nador-bar"></div>
               </div>
             </div>
 
             <div>
               <div class="mb-2 flex items-center justify-between gap-3 text-sm">
                 <span>Hay Al Matar</span>
-                <span class="font-semibold">42</span>
+                <span class="font-semibold" id="almatar-number">42</span>
               </div>
 
               <div class="h-3 overflow-hidden rounded-full bg-gray-100">
-                <div class="h-full w-[75%] rounded-full bg-teal-500"></div>
+                <div class="h-full w-[75%] rounded-full bg-teal-500" id="almatar-bar"></div>
               </div>
             </div>
 
             <div>
               <div class="mb-2 flex items-center justify-between gap-3 text-sm">
                 <span>Selouane</span>
-                <span class="font-semibold">30</span>
+                <span class="font-semibold" id="Selouane-number">30</span>
               </div>
 
               <div class="h-3 overflow-hidden rounded-full bg-gray-100">
-                <div class="h-full w-[55%] rounded-full bg-teal-300"></div>
+                <div class="h-full w-[55%] rounded-full bg-teal-300" id="Selouane-bar"></div>
               </div>
             </div>
 
@@ -403,6 +397,6 @@
     </main>
 
   </div>
-  <script type="module" src="./src/dashboard.js"></script>
+  <script type="module" src="./dashboard.js"></script>
 </body>
 </html>
