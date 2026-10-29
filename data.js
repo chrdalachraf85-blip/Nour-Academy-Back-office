@@ -1,4 +1,4 @@
-export const demoRegistrations = [
+export const etudiants = [
   {
     id: 1,
     dossier: "NA-2026-001",
