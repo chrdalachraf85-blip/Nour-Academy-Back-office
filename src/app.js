@@ -728,10 +728,6 @@ checkoutButton.addEventListener("click", () => {
   localStorage.getItem("nourAcademyRegistrations") || "[]"
 );
 
-if (!Array.isArray(savedRegistrations)) {
-  alert("Format de stockage invalide.");
-  return;
-}
 
 savedRegistrations.push(registration);
 
@@ -740,7 +736,7 @@ localStorage.setItem(
   JSON.stringify(savedRegistrations)
 );
       form.innerHTML = "";
-
+      
       cart = [];
       renderCart();
       filterCourses();
