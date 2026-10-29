@@ -49,7 +49,7 @@ localStorage.setItem(
 // dashboard stats
 const totalRegistrations = studentslist.length;
 
-const pendingount = studentslist.filter(
+const pendingCount = studentslist.filter(
   student =>
     student.statut === "En attente" ||
     student.statut === "Nouvelle"
@@ -85,7 +85,8 @@ for (const student of studentslist) {
   }
 }
 
-document.querySelector("#payed-price").textContent =`${monthlyRevenue}  MAD`
+document.querySelector("#payed-price").textContent =` 
+${monthlyRevenue}  MAD`
 
 
 // status bars update
@@ -97,9 +98,16 @@ function updateBar(id, count) {
     }
 
     bar.style.width = percentage + "%";
-  
 }
-
 updateBar("validés-bar", validatedCount);
 updateBar("enAttent-bar", pendingCount);
 updateBar("Payée-bar", paidCount);
+
+let nadorcount = studentslist.filter(students => students.centre === "Nador").length
+let matarcount = studentslist.filter(students => students.centre === "Hay Al Matar").length
+let slwancount = studentslist.filter(students => students.centre === "Selouane").length
+
+document.querySelector("#Nador-number").textContent = nadorcount;
+document.querySelector("#almatar-number").textContent = matarcount;
+document.querySelector("#Selouane-number").textContent = slwancount;
+
