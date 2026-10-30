@@ -1,4 +1,4 @@
-import { etudiants } from "../data";
+import { demoRegistrations } from "../data";
 
 document.addEventListener("DOMContentLoaded", () => {
     const student_table_body = document.getElementById("student_table_body");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         student_table_body.innerHTML = "";
 
         let debut = (page - 1) * parPage;
-        let liste = etudiants.slice(debut, debut + parPage);
+        let liste = demoRegistrations.slice(debut, debut + parPage);
 
         liste.forEach((etudiant) => {
             student_table_body.innerHTML += `
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById("suivant").addEventListener("click", () => {
-        if (page < Math.ceil(etudiants.length / parPage)) {
+        if (page < Math.ceil(demoRegistrations.length / parPage)) {
             changerPage(page + 1);
         }
     });

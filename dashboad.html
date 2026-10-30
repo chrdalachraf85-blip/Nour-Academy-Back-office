@@ -165,18 +165,14 @@
 
       </section>
 
-    </main>
-
-    <script type="module" src="src/dashboard.js"></script>
-
-    <section>
-      <h2>
+      <section class="bg-white p-6 mt-4 rounded-lg">
+      <h2 class="text-2xl font-bold mb-6">
         Nouvelle inscription
       </h2>
       <form>
         <div>
-          <input type="text">
-          <select id="Niveau">
+          <input id="nom" type="text"  placeholder="Nom de l'élève" class="border p-3 rounded-lg w-full mb-4">
+          <select id="Niveau" class="border p-3 rounded-lg w-full mb-4">
             <option value="">Tous les niveaux</option>
           <option value="Primaire">Primaire</option>
           <option value="Collège">Collège</option>
@@ -184,7 +180,8 @@
           <option value="1re Bac">1re Bac</option>
           <option value="2e Bac">2e Bac</option>
           </select>
-          <select id="cours">
+
+          <select id="cours" class="border p-3 rounded-lg w-full mb-4">
             <option value="">Toutes les matières</option>
           <option value="Mathématiques">Mathématiques</option>
           <option value="Physique-Chimie">Physique-Chimie</option>
@@ -198,15 +195,46 @@
           <option value="Comptabilité">Comptabilité</option>
           <option value="Renforcement scolaire">Renforcement scolaire</option>
           </select>
-          <select id="centres">
+          <select id="centres" class="border p-3 rounded-lg w-full mb-4">
             <option value="">Sélectionner un centre</option>
                     <option>Selouane</option>
                     <option>Nador</option>
                     <option>Hay Al Matar10</option>
           </select>
         </div>
+
+        <div>
+          <input type="tel" placeholder="Téléphone du parent" class="border p-3 rounded-lg w-full mb-4">
+          <select id="statuts" class="border p-3 rounded-lg w-full mb-4">
+            <option value="">Toutes les statuts</option>
+            <option value="">Payée</option>
+            <option value="">Validée</option>
+            <option value="">En attente</option>
+          </select>
+
+          <input id="date" type="date" class="border p-3 rounded-lg w-full mb-4">
+
+          <input id="remarques" type="text" placeholder="Remarques..." class="border p-3 rounded-lg w-full">
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+          <button>
+            Annuler
+          </button>
+        </div>
+
+        <div>
+          <button>
+            Enregistrer
+          </button>
+        </div>
       </form>
     </section>
+
+    </main>
+
+    <script type="module" src="src/inscriptions.js"></script>
 
 </body>
 
