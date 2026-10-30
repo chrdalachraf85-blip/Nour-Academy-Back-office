@@ -38,18 +38,51 @@ document.addEventListener("DOMContentLoaded", () => {
                         </svg>
                         </button>
                         <button
-                        class="p-1.5 text-red-500 bg-red-50 hover:bg-red-100 rounded-lg transition-colors focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
+                            type="button"
+                            data-id="${etudiant.id}"
+                            class="p-1.5 text-red-500 bg-red-50 hover:bg-red-100 rounded-lg transition-colors focus:outline-none">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+
+                            </svg>
                         </button>
                     </div>
                     </td>
                 </tr>`
         });
     }
+
+student_table_body.addEventListener("click", (e) => {
+
+    const bouton = e.target.closest("button[data-id]");
+
+    if (!bouton) {
+        return;
+    }
+
+    const id = Number(bouton.dataset.id);
+
+    const confirmation = confirm("Voulez-vous vraiment supprimer cette inscription ?");
+
+    if (!confirmation) {
+        return;
+    }
+
+    const index = demoRegistrations.findIndex((inscription) => {
+        return inscription.id === id;
+    });
+
+    if (index !== -1) {
+        demoRegistrations.splice(index, 1);
+    }
+
+    afficher();
+});
 
     function changerPage(numero) {
         page = numero;
