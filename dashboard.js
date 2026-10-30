@@ -1,4 +1,3 @@
-
 import { demoRegistrations } from "./data.js";
 
 const studentsKey = "nourAcademystudents";
@@ -19,9 +18,7 @@ const savedRegistrations = JSON.parse(
 );
 //add if no
 for (const registration of savedRegistrations) {
-  const alreadyExists = studentslist.some(
-    student => String(student.dossier) === String(registration.id)
-  );
+  const alreadyExists = studentslist.some(student => String(student.nom) === String(registration.id));
 
   if (!alreadyExists) {
     const courses = registration.courses || [];
@@ -67,6 +64,10 @@ const paidCount = studentslist.filter(
 document.querySelector("#registrations-number").textContent =
   totalRegistrations;
 
+
+
+
+
 document.querySelector("#en-atttent").textContent = pendingCount;
 document.querySelector("#validés").textContent = validatedCount;
 
@@ -88,13 +89,13 @@ for (const student of studentslist) {
 document.querySelector("#payed-price").textContent =` 
 ${monthlyRevenue}  MAD`
 
-
+let percentage;
 // status bars update
 function updateBar(id, count) {
   const bar = document.querySelector("#" + id);
 
     if (totalRegistrations > 0) {
-      percentage = (count / totalRegistrations) * 100;
+       percentage = (count / totalRegistrations) * 100;
     }
 
     bar.style.width = percentage + "%";
@@ -110,4 +111,31 @@ let slwancount = studentslist.filter(students => students.centre === "Selouane")
 document.querySelector("#Nador-number").textContent = nadorcount;
 document.querySelector("#almatar-number").textContent = matarcount;
 document.querySelector("#Selouane-number").textContent = slwancount;
+
+
+document.querySelector("#nador-bar").style.width = (nadorcount / 50) * 100 + "%";
+
+document.querySelector("#almatar-bar").style.width = (matarcount / 50) * 100 + "%";
+
+document.querySelector("#Selouane-bar").style.width = (slwancount / 50) * 100 + "%";
+
+
+
+
+
+// latest registers
+const tableBody = document.querySelector("#latestRegister");
+
+const latestRegistrations = [...studentslist]
+  .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+
+tableBody.innerHTML = latestRegistrations.map(student => `
+  <tr class="border-t border-border">
+    <td class="px-6 py-4 font-medium">${student.dossier}</td>
+    <td class="px-6 py-4">${student.nom}</td>
+    <td class="px-6 py-4">${student.cours}</td>
+    <td class="px-6 py-4">${student.statut}</td>
+    <td class="px-6 py-4">${student.date.split("-").reverse().join("/")}</td>
+  </tr>
+`).join("");
 
