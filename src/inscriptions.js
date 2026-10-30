@@ -136,6 +136,15 @@ enregistrer_boutton.addEventListener("click", (e) => {
         return;
     }
 
+const nombreInscrits = demoRegistrations.filter((inscription) => {
+    return inscription.cours === createdCours;
+}).length;
+
+if (nombreInscrits >= 15) {
+    alert("Désolé, ce cours est complet (15 élèves maximum) !");
+    return;
+}
+
     const registered = {
         id: demoRegistrations.length + 1,
         dossier: "NA-2026-" + String(demoRegistrations.length + 1).padStart(3, "0"),
