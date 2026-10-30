@@ -127,6 +127,15 @@ enregistrer_boutton.addEventListener("click", (e) => {
         return;
     }
 
+    const existe = demoRegistrations.find((s) => {
+        return s.nom.toLowerCase() === createdNom.toLowerCase() && s.cours === createdCours;
+    });
+
+    if (existe) {
+        alert("Cet élève est déjà inscrit à ce cours !");
+        return;
+    }
+
     const registered = {
         id: demoRegistrations.length + 1,
         dossier: "NA-2026-" + String(demoRegistrations.length + 1).padStart(3, "0"),
