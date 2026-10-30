@@ -67,4 +67,85 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     afficher();
-})
+});
+
+const enregistrer_boutton = document.getElementById("enregistrer_boutton");
+
+enregistrer_boutton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const nom = document.getElementById("nom");
+    const telephone = document.getElementById("telephone");
+    const date = document.getElementById("date");
+    const remarques = document.getElementById("remarques");
+
+    const niveau = document.getElementById("Niveau");
+    const cours = document.getElementById("cours");
+    const centre = document.getElementById("centres");
+    const statut = document.getElementById("statuts");
+
+    const createdNom = nom.value.trim();
+    const createdTelephone = telephone.value.trim();
+    const createdDate = date.value;
+    const createdRemarques = remarques.value.trim();
+
+    const createdNiveau = niveau.value;
+    const createdCours = cours.value;
+    const createdCentre = centre.value;
+    const createdStatut = statut.value;
+
+    if (createdNom === "") {
+        alert("Veuillez saisir le nom de l'élève");
+        return;
+    }
+    else if (createdTelephone === "") {
+        alert("Veuillez saisir le téléphone du parent");
+        return;
+    }
+    else if (createdDate === "") {
+        alert("Veuillez sélectionner une date");
+        return;
+    }
+    else if (createdRemarques === "") {
+        alert("Veuillez saisir les remarques");
+        return;
+    }
+    else if (createdNiveau === "") {
+        alert("Veuillez sélectionner un niveau");
+        return;
+    }
+    else if (createdCours === "") {
+        alert("Veuillez sélectionner un cours");
+        return;
+    }
+    else if (createdCentre === "") {
+        alert("Veuillez sélectionner un centre");
+        return;
+    }
+    else if (createdStatut === "") {
+        alert("Veuillez sélectionner un statut");
+        return;
+    }
+
+    const registered = {
+        id: demoRegistrations.length + 1,
+        dossier: "NA-2026-" + String(demoRegistrations.length + 1).padStart(3, "0"),
+        nom: createdNom,
+        niveau: createdNiveau,
+        courseId: 1,
+        cours: createdCours,
+        total: 450,
+        telephone: createdTelephone,
+        statut: createdStatut,
+        date: createdDate,
+        centre: createdCentre,
+        remarques: createdRemarques
+    };
+
+    console.log(registered);
+    
+
+    demoRegistrations.push(registered);
+
+    alert("Inscription enregistrée avec succès !");
+});
