@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nour Academy | Dashboard</title>
+  <link href="/src/style.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-bg text-text">
+
+  <!-- Header -->
+  <header class="flex h-20 items-center justify-between border-b border-border bg-surface px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-2">
+      <a href="index.html">
+        <img src="src/assets/logo.webp" alt="Nour Academy logo" class="h-12 w-auto">
+      </a>
+
+      <p class="-ml-2 text-xl font-bold leading-tight text-primary">
+        Nour<br>academy
+      </p>
+    </div>
+
+    <button id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+      class="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-2xl text-primary transition hover:bg-surface-soft lg:hidden">☰</button>
+
+  </header>
+
+
+  <!-- Layout -->
+  <div class="flex min-h-screen">
+
+    <aside id="sidebar"
+      class="fixed inset-y-20 left-0 z-50 flex w-[280px] -translate-x-full flex-col gap-4 overflow-y-auto bg-primary px-5 py-6 transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:translate-x-0">
+
+      <a id=""
+        class="flex items-center gap-3 rounded-xl bg-white/10 px-4 py-3 font-medium text-white transition hover:bg-white/20">
+        <span>▦</span>
+        Tableau de bord
+      </a>
+
+      <a href="#inscriptions"
+        class="flex items-center gap-3 rounded-xl px-4 py-3 font-medium text-white transition hover:bg-white/10">
+        <span>☷</span>
+        Inscriptions
+      </a>
+
+    </aside>
+
+
+    <main class="w-full">
+      <section class="bg-white p-6 md:p-8 rounded-lg flex justify-between">
+        <div>
+          <h1 class="text-2xl md:text-4xl font-bold texte-slate-900">
+            Gestion des inscriptions
+          </h1>
+          <p class="text-gray-500 text-base md:text-xl mt-2">
+            Consulter, ajouter, modifier et gerer toutes les inscriptions
+          </p>
+        </div>
+        <button id="Nouvelle Inscription"
+          class="bg-teal-900 hover:bg-teal-800 text-white px-4 py-2 rounded-xl font-semibold flex items-center gap-4 whitespace-nowrap">
+          <span class="text-2xl"></span>
+
+          <span>Nouvelle Inscription</span>
+
+        </button>
+
+      </section>
+
+      <section class="bg-white p-6 mt-4 rounded-lg flex justify-between items-center">
+        <div class="border border-gray-300 p-2 rounded-lg flex gap-2.5">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="25px">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M9.5 17c1.71 0 3.287-.573 4.55-1.537l4.743 4.744a1 1 0 0 0 1.414-1.414l-4.744-4.744A7.5 7.5 0 1 0 9.5 17zM15 9.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                fill="#000000"></path>
+            </g>
+          </svg>
+          <input class="outline-0" type="text" id="Rechercher" placeholder="Rechercher par nom">
+        </div>
+
+        <div class="border border-gray-300 p-2 rounded-lg">
+          <select class="outline-0" id="Filtrer les dates">
+            <option value="">Toutes les dates</option>
+            <option value="">Aujourd'hui</option>
+            <option value="">Cette semaine</option>
+            <option value="">Ce mois</option>
+            <option value="">Cette annee</option>
+          </select>
+        </div>
+
+        <div class="border border-gray-300 p-2 rounded-lg">
+          <select class="outline-0" id="filtrer les statuts">
+            <option value="">Toutes les statuts</option>
+            <option value="">Payée</option>
+            <option value="">Validée</option>
+            <option value="">En attente</option>
+          </select>
+        </div>
+
+        <button class="border border-gray-300 p-2 rounded-lg">
+          <svg fill="#000000" width="25px" height="25px" viewBox="0 0 24 24" id="down" data-name="Multi Color"
+            xmlns="http://www.w3.org/2000/svg" class="icon multi-color">
+            <title style="stroke-width: 2;">down</title>
+            <path id="primary-stroke" d="M19,14l-7,7L5,14m7,7V3"
+              style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+            </path>
+          </svg>
+        </button>
+      </section>
+
+      <section class="w-full overflow-x-auto bg-white rounded-lg shadow-sm border border-gray-100  p-6 mt-4">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50/80 text-slate-700 font-semibold text-sm border-b border-gray-100">
+              <th class="p-4 font-bold text-slate-800"># Dossier</th>
+              <th class="p-4 font-bold text-slate-800">Élève</th>
+              <th class="p-4 font-bold text-slate-800">Niveau</th>
+              <th class="p-4 font-bold text-slate-800">Cours</th>
+              <th class="p-4 font-bold text-slate-800">Téléphone parent</th>
+              <th class="p-4 font-bold text-slate-800">Statut</th>
+              <th class="p-4 font-bold text-slate-800">Date</th>
+              <th class="p-4 font-bold text-slate-800 text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody id="student_table_body" class="divide-y divide-gray-100 text-slate-700 text-sm font-medium"></tbody>
+        </table>
+
+
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between gap-4 py-3 px-4 bg-slate-50/50 text-slate-500 text-sm font-medium border-t border-gray-100">
+
+          <div id="pagination-info">
+            Affichage de 1 à 10 sur 24 inscriptions
+          </div>
+
+          <div id="pagination-buttons" class="flex items-center space-x-2">
+
+            <button id="precedent"
+              class="flex items-center justify-center w-10 h-9 bg-white border border-slate-200 rounded-lg text-slate-400 hover:bg-slate-50 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </button>
+
+            <div id="numeros-pages" class="flex items-center space-x-2"></div>
+
+            <button id="suivant"
+              class="flex items-center justify-center w-10 h-9 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-50 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <script type="module" src="src/dashboard.js"></script>
+
+    <section>
+      <h2>
+        Nouvelle inscription
+      </h2>
+      <form>
+        <div>
+          <input type="text">
+          <select id="Niveau">
+            <option value="">Tous les niveaux</option>
+          <option value="Primaire">Primaire</option>
+          <option value="Collège">Collège</option>
+          <option value="Lycée">Lycée</option>
+          <option value="1re Bac">1re Bac</option>
+          <option value="2e Bac">2e Bac</option>
+          </select>
+          <select id="cours">
+            <option value="">Toutes les matières</option>
+          <option value="Mathématiques">Mathématiques</option>
+          <option value="Physique-Chimie">Physique-Chimie</option>
+          <option value="Anglais">Anglais</option>
+          <option value="Français">Français</option>
+          <option value="Arabe">Arabe</option>
+          <option value="Espagnol">Espagnol</option>
+          <option value="Informatique">Informatique</option>
+          <option value="Préparation examens">Préparation examens</option>
+          <option value="SVT">SVT</option>
+          <option value="Comptabilité">Comptabilité</option>
+          <option value="Renforcement scolaire">Renforcement scolaire</option>
+          </select>
+          <select id="">
+            
+          </select>
+        </div>
+      </form>
+    </section>
+
+</body>
+
+</html>
