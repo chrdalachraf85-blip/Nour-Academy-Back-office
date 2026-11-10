@@ -1,4 +1,6 @@
 import "./style.css";
+// Use the same sample students as the dashboard when no student list is saved.
+import { demoRegistrations } from "../data.js";
 
 const courses = [
   {
@@ -123,6 +125,48 @@ const courses = [
   }
 ];
 
+const courseCapacity = 15;
+const registrationsKey = "nourAcademyRegistrations";
+
+function getSavedRegistrations() {
+  return JSON.parse(localStorage.getItem(registrationsKey) || "[]");
+}
+
+function getRemainingPlaces(course) {
+  // Read the student list used by the dashboard, or use the sample students.
+  const students = JSON.parse(
+    localStorage.getItem("nourAcademystudents") || JSON.stringify(demoRegistrations)
+  );
+
+  // Count students who are already enrolled in this course.
+  let savedEnrollments = 0;
+  for (const student of students) {
+    if (
+      Number(student.courseId) === Number(course.id) ||
+      (student.cours || "").includes(course.title)
+    ) {
+      savedEnrollments++;
+    }
+  }
+
+  // Count form registrations that are not in the student list yet.
+  for (const registration of getSavedRegistrations()) {
+    const enrolled = (registration.courses || []).some(
+      registeredCourse => Number(registeredCourse.id) === Number(course.id)
+    );
+
+    const alreadyInStudentList = students.some(
+      student => String(student.dossier || student.id) === String(registration.id)
+    );
+
+    if (enrolled && !alreadyInStudentList) {
+      savedEnrollments++;
+    }
+  }
+
+  return Math.max(0, courseCapacity - savedEnrollments);
+}
+
 const courseGrid = document.querySelector("#courseGrid");
 const searchInput = document.querySelector("#searchInput");
 const levelFilter = document.querySelector("#levelFilter");
@@ -166,7 +210,10 @@ function renderCourses(courseList) {
     return;
   }
 
-  courseGrid.innerHTML = courseList.map(course => `
+  courseGrid.innerHTML = courseList.map(course => {
+    const remainingPlaces = getRemainingPlaces(course);
+
+    return `
     <article class="rounded-2xl border border-border bg-surface p-5">
 
       <p class="text-sm text-primary">
@@ -186,14 +233,14 @@ function renderCourses(courseList) {
       </p>
 
       <p class="text-sm ${
-        course.places === 0
+        remainingPlaces === 0
           ? "font-semibold text-red-600"
           : "text-text"
       }">
         ${
-          course.places === 0
+          remainingPlaces === 0
             ? "Complet"
-            : `${course.places} places restantes`
+            : `${remainingPlaces} places restantes`
         }
       </p>
 
@@ -206,19 +253,20 @@ function renderCourses(courseList) {
         <button
           type="button"
           data-course-id="${course.id}"
-          ${course.places === 0 ? "disabled" : ""}
+          ${remainingPlaces === 0 ? "disabled" : ""}
           class="min-h-11 rounded-xl px-4 ${
-            course.places === 0
+            remainingPlaces === 0
               ? "cursor-not-allowed bg-gray-200 text-gray-500"
               : "bg-primary text-white"
           }"
         >
-          ${course.places === 0 ? "Complet" : "Ajouter"}
+          ${remainingPlaces === 0 ? "Complet" : "Ajouter"}
         </button>
 
       </div>
     </article>
-  `).join("");
+    `;
+  }).join("");
 }
 
 function filterCourses() {
@@ -257,6 +305,11 @@ courseGrid.addEventListener("click", event => {
   const selectedCourse = courses.find(course => course.id === courseId);
 
   if (!selectedCourse) return;
+
+  if (getRemainingPlaces(selectedCourse) === 0) {
+    filterCourses();
+    return;
+  }
 
   const alreadyInCart = cart.some(course => course.id === courseId);
 
@@ -364,9 +417,28 @@ checkoutButton.addEventListener("click", () => {
             Registration
           </legend>
 
+          <p id="capacityError" class="hidden col-span-full rounded-lg bg-red-50 p-3 text-center text-sm text-red-700" role="alert"></p>
+
           <p class="font-extrabold bg-accent rounded-2xl text-center col-span-full">
             Informations du parent
           </p>
+
+          <div class="col-span-full mx-auto w-full max-w-md text-center">
+            <label for="centre" class="text-secondary">
+              Centre <span class="text-red-600">*</span>
+            </label>
+            <select
+              name="centre"
+              id="centre"
+              required
+              class="mt-1 border-2 rounded-xl p-1 border-border w-full text-left focus:border-primary-hover focus:outline-1 focus:outline-primary-hover"
+            >
+              <option value="">Choisir le centre</option>
+              <option value="Nador">Nador</option>
+              <option value="Hay Al Matar">Hay Al Matar</option>
+              <option value="Selouane">Selouane</option>
+            </select>
+          </div>
 
           <div>
             <label for="name" class="text-center text-secondary">
@@ -540,6 +612,7 @@ checkoutButton.addEventListener("click", () => {
   const passwordCheckError = registrationForm.querySelector("#passwordCheckError");
   const termsError = registrationForm.querySelector("#termsError");
   const acceptTerms = registrationForm.querySelector("#acceptTerms");
+  const capacityError = registrationForm.querySelector("#capacityError");
 
   const passwordPattern = /^(?=.*[A-Z])(?=.*[^\w\s]).{8,}$/;
 
@@ -567,6 +640,14 @@ checkoutButton.addEventListener("click", () => {
 
   registrationForm.addEventListener("submit", event => {
     event.preventDefault();
+
+    const fullCourse = cart.find(course => getRemainingPlaces(course) === 0);
+    if (fullCourse) {
+      capacityError.textContent = `Le cours « ${fullCourse.title} » est complet. Retirez-le du panier pour continuer.`;
+      capacityError.classList.remove("hidden");
+      return;
+    }
+    capacityError.classList.add("hidden");
 
     const checknumber = phoneInput.value.split("");
     let result = "";
@@ -637,6 +718,7 @@ checkoutButton.addEventListener("click", () => {
       email: registrationForm.querySelector("#email").value.trim(),
       studentName: registrationForm.querySelector("#namekid").value.trim(),
       studentLevel: registrationForm.querySelector("#level").value,
+      centre: registrationForm.querySelector("#centre").value,
       courses: selectedCourses,
       total: total,
       createdAt: new Date().toISOString(),
@@ -666,6 +748,7 @@ checkoutButton.addEventListener("click", () => {
 
         <h3 class="mt-4 font-bold">Informations du parent</h3>
         <p>Nom : ${registration.parentName}</p>
+        <p>Centre : ${registration.centre}</p>
         <p>Téléphone : ${registration.phone}</p>
         <p>Email : ${registration.email}</p>
 
@@ -724,9 +807,7 @@ checkoutButton.addEventListener("click", () => {
     });
 
     reviewPage.querySelector("#confirmRegistration").addEventListener("click", () => {
-      const savedRegistrations = JSON.parse(
-  localStorage.getItem("nourAcademyRegistrations") || "[]"
-);
+      const savedRegistrations = getSavedRegistrations();
 
 
 savedRegistrations.push(registration);
